@@ -51,13 +51,30 @@ function Cakes(){
 
     // deletes a cake
     this.delete = function(req, res){
-        Cake.remove({_id: req.params._id}, function(err){
+        // first let's get the cake
+        Cake.findOne({_id: req.params._id}, function(err, cake){
             if(err){
                 res.json({'status': 500, 'errors': err});
             }else{
-                res.json({'status': 200});
+                // then let's remove all of the reviews first...
+                for(let review of cake.reviews){
+                    Review.remove({_id: review._id}, function(err){
+                        if(err){
+                            console.log(err);
+                        }
+                    })
+                }
+                // last remove the cake itself
+                Cake.remove({_id: req.params._id}, function(err){
+                    if(err){
+                        res.json({'status': 500, 'errors': err});
+                    }else{
+                        res.json({'status': 200});
+                    }
+                });
             }
         });
+
     }
 
     // add a review to a cake
