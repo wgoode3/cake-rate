@@ -1,0 +1,10 @@
+<fieldset style="display: inline-block; width: 40%; vertical-align: top;">
+  <legend>All Cakes</legend>
+  <div style="height: 320px; overflow: auto;">
+    <p *ngIf="cakes.length === 0">There are no cakes yet...</p>
+    <div *ngFor="let cake of cakes" style="border: 1px solid #000; padding: 10px; margin: 10px;">
+      <img src="{{ cake.image }}" alt="it is delicious cake" (click)="selectCake(cake._id)" width="200px">
+      <p>Baker: {{ cake.baker }} <a href="#!" (click)="eat(cake._id)" style="float:right;">remove</a></p>
+    </div>
+  </div>
+</fieldset>

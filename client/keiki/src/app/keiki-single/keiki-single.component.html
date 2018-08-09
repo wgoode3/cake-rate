@@ -1,0 +1,33 @@
+<fieldset *ngIf="singleCake">
+  <legend>Single Cake</legend>
+  <div style="display:inline-block; vertical-align: top;">
+    <img src="{{ singleCake.image }}" alt="it is delicious cake" (click)="selectCake(cake._id)" width="200px">
+    <p>Baker: {{ singleCake.baker }}</p>
+  </div>
+  <div style="display:inline-block; vertical-align: top;">
+      <form (submit)="reviewCake(singleCake._id)">
+        <p>Review:<br>
+          <textarea name="review.comment" [(ngModel)]="review.comment"></textarea>
+        </p>
+        <p>Rating: 
+          <select name="review.stars" [(ngModel)]="review.stars">
+            <option>★★★★★</option>
+            <option>★★★★☆</option>
+            <option>★★★☆☆</option>
+            <option>★★☆☆☆</option>
+            <option>★☆☆☆☆</option>
+          </select>
+        </p>
+        <input type="submit" value="Review Cake" />
+      </form>  
+  </div>
+  <div style="display:inline-block; vertical-align: top;">
+    <p *ngIf="singleCake.reviews.length === 0">
+      There are no reviews yet...
+    </p>
+    <p *ngFor="let review of singleCake.reviews">
+      {{ review.rating }} stars: 
+      {{ review.comment }}
+    </p>
+  </div>
+</fieldset>

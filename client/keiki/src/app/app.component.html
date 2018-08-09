@@ -1,0 +1,6 @@
+
+<h1>Welcome to {{ title }}!</h1>
+
+<app-keiki-all #child (cakeEvent)="dataFromCake($event)"></app-keiki-all>
+<app-keiki-new (getNewCakes)="dataFromChild()"></app-keiki-new>
+<app-keiki-single #child2 ></app-keiki-single>

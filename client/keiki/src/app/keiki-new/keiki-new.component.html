@@ -1,0 +1,9 @@
+<fieldset style="display: inline-block; height: 335px; width: 40%; vertical-align: top;">
+  <legend>New Cake</legend>
+  <form (submit)="bakeCake(hiddenval.value)">
+    <p>Baker: <input type="text" name="newCake.baker" [(ngModel)]="newCake.baker" /></p>
+    <input type="hidden" name="newCake.image" [(ngModel)]="newCake.image" id="img" [value]="" #hiddenval>
+    <p>Image: <input type="file" name="img" onchange="previewFile()"/></p>
+    <input type="submit" value="Bake Cake" />
+  </form>
+</fieldset>
